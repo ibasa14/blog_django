@@ -6,67 +6,54 @@
     
         <div class="col-md-10 offset-md-3">
             <div class="col-lg-8">
-                <h3>Articles</h3>
-                <hr>
+                <h3>Articles
+                   <form style='display:inline-block; text-align: right;'>
+                                       <span>   
+
+                        {% csrf_token %} 
+                      <input type="text" name = "keyword" maxlength="64" placeholder="Title..."
+                      style='border:0; border-bottom: 1px solid grey; width: 40%'>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                                      </span>
+
+                  </form>
+                </h3>
                 </div>
         </div>
 </div>
-<div class ="row">
-    <div class="col-md-10 offset-md-3">
-        <div class="col-lg-8">
-            <form>
-                 {% csrf_token %} 
-                <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Title...">
-              <button type="submit" class="btn btn-danger">Search</button>
-            </form>
-      </div>
-    </div>
+                
 
-</div>
-
+<hr>
 
 {% if articles %}
 
 {% for article in articles %}
 <div class="row">
-    <div class="col-md-10 offset-md-3">
 
     <!-- Post Content Column -->
-    <div class="col-lg-8">
+    <div class="col-lg-7 offset-md-3">
 
       <!-- Title -->
-        
-      <!-- Author -->
-      <p class="lead">
-        
-        Posted by
-                {{article.author.username}} 
-
-      </p>
-
-      <hr>
-
-      <!-- Date/Time -->
-      <p>{{article.title}}</p>
-      <hr>
-      <!-- Preview Image -->
-      {% if article.article_image %}
-
-      {% endif %}
-     
-
-      <hr>
+      <h5 class=""><a href = "{% url 'article:detail' article.id %}">{{article.title}}</a> - <span>{{article.created_date}}</span></h5>
 
       <!-- Post Content -->
       <p class="lead">
           {{article.content|safe|truncatewords:50}}
       </p>
+        
+      <!-- Author -->
+      <p>
+        
+        Posted by: <span class = 'lead'>{{article.author.username}} </span>
+
+      </p>
+
+
 
       <hr>
          
-        </div>
-      </div>
-      </div>
+  </div>
+</div>
 
 {% endfor %}
 

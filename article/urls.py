@@ -7,10 +7,10 @@ app_name = "article"
 urlpatterns = [
     path('dashboard/',views.dashboard,name = "dashboard"),
     path('addarticle/',views.addArticle,name = "addarticle"),
-    path('article/<str:title>/',views.detail,name = "detail"),
-    path('update/<str:title>',views.updateArticle,name = "update"),
-    path('delete/<str:title>',views.deleteArticle,name = "delete"),
+    path('article/<int:id>/',views.detail,name = "detail"),
+    path('update/<int:id>',views.updateArticle,name = "update"),
+    path('delete/<int:id>',views.deleteArticle,name = "delete"),
     path('',views.articles,name = "articles"),
-    # path('comment/<str:title>',views.addComment,name = "comment"),
+    path('comment/<str:title>',views.addComment,name = "comment"),
     
 ]
